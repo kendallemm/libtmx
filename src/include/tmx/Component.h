@@ -18,6 +18,7 @@
 
 #include <map>
 #include <string>
+#include <tmx/PropertyVisitor.h>
 
 namespace tmx {
 
@@ -51,6 +52,24 @@ namespace tmx {
      * @param value the property value
      */
     bool addProperty(const std::string& key, const std::string& value);
+
+    /**
+     * @brief Walk the properties
+     *
+     * @param visitor the visitor
+     */
+    void visitProperties (PropertyVisitor &visitor) const {
+      for (auto pair : m_prop) {
+        visitor.visitProperty (pair.first, pair.second);
+      }
+    }
+
+    /**
+     * @brief Tell others whether or not this component has properties.
+     */
+    bool hasProperties () const {
+      return !m_prop.empty();
+    }
 
   private:
     std::map<std::string, std::string> m_prop;

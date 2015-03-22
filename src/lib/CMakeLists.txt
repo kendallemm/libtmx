@@ -11,6 +11,7 @@ set(LIBTMX_SRC
   Map.cc
   Object.cc
   Parser.cc
+  PropertyVisitor.cc
   TileSet.cc
 )
 
